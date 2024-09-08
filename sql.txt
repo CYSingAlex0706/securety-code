@@ -1,0 +1,25 @@
+CREATE TABLE user (
+    id varchar(30) PRIMARY KEY,
+    pwd varchar(100) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    login_attempts INT NULL,
+    account_locked INT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE trading_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id varchar(30) NOT NULL,
+    stock_symbol VARCHAR(10) NOT NULL,
+    stock_price DECIMAL(10, 2) NOT NULL,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    transaction_date DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE sensitive_data (
+    user_id varchar(30) PRIMARY KEY,
+    HKID VARCHAR(11),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+)  ENGINE=InnoDB;
