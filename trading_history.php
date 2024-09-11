@@ -1,14 +1,9 @@
 <?php
-session_start();
-
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+require_once 'session_control.php';
+check_session_timeout();
 
 // Database connection
-$conn = new mysqli("localhost", "root", "", "test");
+require_once 'connect_db.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

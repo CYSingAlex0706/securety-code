@@ -1,6 +1,7 @@
 // buy_stock.php
 <?php
-session_start();
+require_once 'session_control.php';
+check_session_timeout();
 // Create connection
 require_once 'connect_db.php';
 
@@ -9,11 +10,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];

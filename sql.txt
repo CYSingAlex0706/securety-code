@@ -4,7 +4,8 @@ CREATE TABLE user (
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     login_attempts INT NULL,
-    account_locked INT NULL
+    account_locked INT NULL,
+    Deposits INT NULL,
 ) ENGINE=InnoDB;
 
 CREATE TABLE trading_history (

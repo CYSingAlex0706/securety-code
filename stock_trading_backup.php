@@ -1,12 +1,7 @@
 <?php
-session_start();
+require_once 'session_control.php';
+check_session_timeout();
 
-
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
 $id = $_SESSION['user_id'];
 $stock_symbol = "AAPL";
 $stock_price = 210.00;

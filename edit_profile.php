@@ -1,3 +1,7 @@
+<?php
+require_once 'session_control.php';
+check_session_timeout();
+?>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -34,7 +38,7 @@
     function validateForm() {
         const hkid = document.getElementById('hkid').value.toUpperCase();
 
-        if (!/^[A-Z]{1}[0-9]{6}(\([0-9A]\))?$/.test(hkid)) {
+        if (!/^[A-Z]{1}[0-9]{6}\([0-9]\)$/.test(hkid)) {
             document.getElementById('idError').style.display = 'inline';
             return false;
         } else {

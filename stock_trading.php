@@ -1,11 +1,7 @@
 <?php
-session_start();
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+require_once 'session_control.php';
+check_session_timeout();
 
 require_once 'polygon_api.php';
 

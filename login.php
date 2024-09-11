@@ -1,12 +1,7 @@
 <?php
-session_start();
-?>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-<?php
+require_once 'session_control.php';
+// We don't call check_session_timeout() here because we want to allow logged-out users to access this page
+
 // Create connection
 require_once 'connect_db.php';
 
@@ -16,6 +11,11 @@ if ($conn->connect_error) {
 }
 
 $error_message = "";
+
+// Check if there's a timeout message
+if (isset($_GET['timeout']) && $_GET['timeout'] == 1) {
+    $error_message = "Your session has expired. Please log in again.";
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Login process
@@ -33,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user_data['account_locked']) {
             $error_message = "This account has been locked. Please contact support.";
         } else {
-
             if (password_verify($pwd, $user_data['pwd'])) {
                 // Successful login
                 $_SESSION['user_id'] = $id;
+                $_SESSION['last_activity'] = time(); // Set initial last activity time
                 
                 // Reset login attempts
                 $reset_attempts_sql = $conn->prepare("UPDATE user SET login_attempts = 0 WHERE id = ?");
@@ -75,20 +75,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2>Login</h2>
-<?php
-if (!empty($error_message)) {
-    echo "<p style='color: red;'>" . htmlspecialchars($error_message) . "</p>";
-}
-?>
-<form method="post" action="">
-    <label for="id">ID:</label>
-    <input type="text" id="id" name="id" required><br><br>
-    <label for="pwd">Password:</label>
-    <input type="password" id="pwd" name="pwd" required><br><br>
-    <input type="submit" value="Login">
-</form>
-<a href="register_form.php">Register</a>
-
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <?php
+    if (!empty($error_message)) {
+        echo "<p style='color: red;'>" . htmlspecialchars($error_message) . "</p>";
+    }
+    ?>
+    <form method="post" action="">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" name="pwd" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <a href="register_form.php">Register</a>
 </body>
 </html>

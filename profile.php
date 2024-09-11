@@ -1,13 +1,9 @@
 <?php
-session_start();
+require_once 'session_control.php';
+check_session_timeout();
 require_once 'connect_db.php';
 require_once 'encryption_handler.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
 
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
