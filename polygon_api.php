@@ -9,7 +9,10 @@ function getStockData($ticker) {
     global $config;
     $apiKey = $config['polygon_api_key'];
     $client = new Client();
-    $url = "https://api.polygon.io/v1/open-close/$ticker/2023-09-06?adjusted=true&apiKey=$apiKey";
+    
+    $yesterdayDate = date('Y-m-d', strtotime('-1 day'));
+    
+    $url = "https://api.polygon.io/v1/open-close/$ticker/$yesterdayDate?adjusted=true&apiKey=$apiKey";
 
     try {
         $response = $client->request('GET', $url);

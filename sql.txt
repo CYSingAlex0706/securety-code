@@ -3,9 +3,9 @@ CREATE TABLE user (
     pwd varchar(100) NOT NULL,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    login_attempts INT NULL,
-    account_locked INT NULL,
-    Deposits INT NULL
+    login_attempts INT DEFAULT 0,
+    account_locked INT DEFAULT 0,
+    Deposits INT DEFAULT 0
 ) ENGINE=InnoDB;
 
 CREATE TABLE trading_history (
@@ -21,6 +21,6 @@ CREATE TABLE trading_history (
 
 CREATE TABLE sensitive_data (
     user_id varchar(30) PRIMARY KEY,
-    HKID VARCHAR(11),
+    HKID VARCHAR(100),
     FOREIGN KEY (user_id) REFERENCES user(id)
 )  ENGINE=InnoDB;

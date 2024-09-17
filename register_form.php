@@ -23,7 +23,7 @@
         <div>
             <label for="pwd">Password:</label>
             <input id="pwd" name="pwd" type="password" size="30" maxlength="100" required>
-            <span id="pwdError" class="error">Password should be composed with at least 8 alphanumeric characters and ? ! symbol</span>
+            <span id="pwdError" class="error">Password require at least one uppercase letter, one lowercase letter, one digit, one special symbol, and a minimum length of 8 characters</span>
         </div>
         <br>
         <div>
@@ -41,6 +41,7 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+    <a href="login.php">Back to login</a>
 
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(e) {
@@ -64,7 +65,7 @@
                 document.getElementById('idError').style.display = 'none';
             }
 
-            if (!/^[a-zA-Z0-9?!]{8,}$/.test(pwd)) {
+            if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[?!@#$%^&*])[a-zA-Z\d?!@#$%^&*]{8,}$/.test(pwd)) {
                 document.getElementById('pwdError').style.display = 'inline';
                 isValid = false;
             } else {

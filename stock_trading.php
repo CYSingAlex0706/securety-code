@@ -53,7 +53,7 @@ if ($stock_price === null) {
     <div class="header">
 
         <div>
-            <a href="trading_history.php">View Trading History</a>
+            <a href="verify_identity.php">View Trading History</a>
         </div>
     </div>
     

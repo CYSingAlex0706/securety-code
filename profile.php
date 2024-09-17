@@ -59,7 +59,7 @@ $conn->close();
         <h2>Your Deposits: <span id="moneyAmount">$<?php echo htmlspecialchars(number_format($deposits, 2)); ?></span></h2>
         <i id="eyeIcon" class="fas fa-eye eye-icon" onclick="toggleMoneyVisibility()"></i>
     </div>
-        <h2>Your HKID: <?php echo $HKID; ?></span></h2>
+        <h2>Your HKID: <?php echo "Valid"; ?></span></h2>
     <a href="stock_trading.php">Go to Stock Trading</a>
     <br><br>
     <a href="logout.php">Logout</a>
