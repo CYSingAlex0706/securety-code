@@ -31,7 +31,6 @@ if ($search_sql->num_rows > 0) {
 	$insert_sql->execute();
 	echo "<h2>Registration Success!! Now back to login</h2>";
 	echo "</p><a href='login.php'>Go back to login page</a></p>";
-	echo "<h2>" . $Salt_Hash_Password . "</h2>";
 }
 
 $conn->close();

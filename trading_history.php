@@ -16,8 +16,6 @@ $stmt = $conn->prepare("SELECT * FROM trading_history WHERE user_id = ? ORDER BY
 $stmt->bind_param("s", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-// $ab= $result->fetch_assoc();
-// echo print_r($ab);
 ?>
 
 <html>

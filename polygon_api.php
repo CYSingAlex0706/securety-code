@@ -20,10 +20,4 @@ function getStockData($ticker) {
     }
 }
 
-// $ticker = 'AAPL'; // Example ticker symbol
-// $stockData = getStockData($ticker);
-
-// echo "Stock Data for $ticker:\n";
-// print_r($stockData);
-
 ?>
